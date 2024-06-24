@@ -1,48 +1,28 @@
-import type { MetaFunction } from "@remix-run/node";
+import type {MetaFunction} from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
+    return [
+        {title: "New Remix App"},
+        {name: "description", content: "Welcome to Remix!"},
+    ];
 };
 
 export default function Index() {
-  return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+    return (
+        <div className="w-screen h-screen bg-gray-200 flex flex-col">
+            <header className="w-full bg-gray-400 flex h-20 justify-center">
+                <div className="w-3/4 mx-auto bg-gray-500 flex flex-row items-center justify-start p-4 gap-6">
+                    <div>Logo here</div>
+                    <div>Hjem</div>
+                    <div>Elever</div>
+                    <div>Logg</div>
+                </div>
+            </header>
+            <div className="flex-grow flex items-center justify-center">
+                <main className="w-3/4 h-3/4 bg-gray-400 flex">
+                    <div>asdf</div>
+                </main>
+            </div>
+        </div>
+    );
 }
