@@ -24,11 +24,9 @@ export default function Index() {
                     </div>
                 </div>
             </header>
-            <div className="flex-grow flex items-center justify-center">
-            <main className="w-3/4 h-3/4 bg-gray-400 flex">
-                    <div>asdf</div>
-                </main>
-            </div>
+            <main className="mx-auto m-10 w-3/4 h-1/2 bg-gray-400 flex">
+
+            </main>
         </div>
     );
 }
