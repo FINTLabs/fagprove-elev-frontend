@@ -1,4 +1,4 @@
-import {json, Link, Links, Meta, Outlet, Scripts, ScrollRestoration,} from "@remix-run/react";
+import {json, Link, Links, Meta, Outlet, Scripts, ScrollRestoration} from "@remix-run/react";
 import "./tailwind.css";
 import '@navikt/ds-css'
 import {LoaderFunction, MetaFunction} from "@remix-run/node";
@@ -34,7 +34,9 @@ export function Layout({children}: { children: React.ReactNode }) {
             <header className="w-full bg-gray-400 flex h-20 justify-center">
                 <div className="w-3/4 mx-auto bg-gray-500 flex flex-row items-center p-4 justify-between">
                     <div className="flex flex-row gap-6">
-                        <div>Logo here</div>
+                        <div>
+                            <img src={"public/novari.png"} alt="Novari Logo" className="h-12"/>
+                        </div>
                         <Link to="/">
                             <Button>Hjem</Button>
                         </Link>
