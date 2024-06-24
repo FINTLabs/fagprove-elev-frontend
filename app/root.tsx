@@ -1,5 +1,6 @@
 import {json, Link, Links, Meta, Outlet, Scripts, ScrollRestoration,} from "@remix-run/react";
 import "./tailwind.css";
+import '@navikt/ds-css'
 import {LoaderFunction, MetaFunction} from "@remix-run/node";
 import {Button} from "@navikt/ds-react";
 import {LeaveIcon} from "@navikt/aksel-icons";
