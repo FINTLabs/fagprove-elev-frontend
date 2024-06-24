@@ -35,7 +35,7 @@ export function Layout({children}: { children: React.ReactNode }) {
                 <div className="w-3/4 mx-auto bg-gray-500 flex flex-row items-center p-4 justify-between">
                     <div className="flex flex-row gap-6">
                         <div>
-                            <img src={"public/novari.png"} alt="Novari Logo" className="h-12"/>
+                            <img src={"novari.png"} alt="Novari Logo" className="h-12"/>
                         </div>
                         <Link to="/">
                             <Button>Hjem</Button>
