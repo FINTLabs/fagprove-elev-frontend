@@ -1,4 +1,4 @@
-import {json, Links, Meta, Outlet, Scripts, ScrollRestoration,} from "@remix-run/react";
+import {json, Link, Links, Meta, Outlet, Scripts, ScrollRestoration,} from "@remix-run/react";
 import "./tailwind.css";
 import {LoaderFunction, MetaFunction} from "@remix-run/node";
 import {Button} from "@navikt/ds-react";
@@ -34,9 +34,15 @@ export function Layout({children}: { children: React.ReactNode }) {
                 <div className="w-3/4 mx-auto bg-gray-500 flex flex-row items-center p-4 justify-between">
                     <div className="flex flex-row gap-6">
                         <div>Logo here</div>
-                        <Button>Hjem</Button>
-                        <Button>Elever</Button>
-                        <Button>Logg</Button>
+                        <Link to="/">
+                            <Button>Hjem</Button>
+                        </Link>
+                        <Link to="/elever">
+                            <Button>Elever</Button>
+                        </Link>
+                        <Link to="/log">
+                            <Button>Log</Button>
+                        </Link>
                     </div>
                     <div className="flex flex-row gap-2 items-center">
                         <div>{username}</div>
@@ -44,7 +50,7 @@ export function Layout({children}: { children: React.ReactNode }) {
                     </div>
                 </div>
             </header>
-            <main className="mx-auto m-10 w-3/4 h-1/2 bg-gray-400 flex">
+            <main className="mx-auto m-10 w-3/4 h-1/2 bg-gray-400">
                 {children}
             </main>
         </div>
