@@ -2,13 +2,18 @@ import {Table} from "@navikt/ds-react";
 import {json} from "@remix-run/react";
 import {useLoaderData} from "react-router";
 import AddElevButton from "~/components/elever/AddElevButton";
+import * as process from "process";
 
-export const loader = async () => {
-    const base_url = "http://fagprove-elev-consumer.fintlabs-no.svc.cluster.local:8080";
+export const loader = async ({ request }) => {
+    const base_url = process.env.BASE_URL || "http://localhost:8080";
+    const cookies = request.headers.get("cookie");
     try {
         const response = await fetch(base_url + "/api/elev", {
             method: 'GET',
-            credentials: 'same-origin'
+            credentials: 'same-origin',
+            headers: {
+                'cookie': cookies
+            }
         });
 
         if (!response.ok) {
@@ -27,7 +32,7 @@ export const loader = async () => {
         }
     } catch (error) {
         console.error('Fetch error:', error);
-        throw new Response('Error fetching data: ' + error.message, {status: 500});
+        throw new Response('Error fetching data: ' + error.message, { status: 500 });
     }
 };
 
