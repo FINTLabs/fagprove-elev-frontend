@@ -13,7 +13,7 @@ export const loader = async () => {
 
         if (!response.ok) {
             console.error('Network response was not ok', response.status, response.statusText);
-            throw new Error('Network response was not ok: ' + response.statusText);
+            return []
         }
 
         const contentType = response.headers.get("content-type");
@@ -23,11 +23,11 @@ export const loader = async () => {
         } else {
             const text = await response.text();
             console.error('Response was not JSON:', text);
-            throw new Error('Response was not JSON: ' + text);
+            return []
         }
     } catch (error) {
         console.error('Fetch error:', error);
-        throw new Response('Error fetching data: ' + error.message, { status: 500 });
+        return []
     }
 };
 
