@@ -5,13 +5,22 @@ import AddElevButton from "~/components/elever/AddElevButton";
 import * as process from "process";
 
 export const loader = async () => {
-    const base_url = process.env.BASE_URL || "http://localhost:8080"
-    return fetch(base_url + "/api/elev", {
-        method: 'GET',
-        credentials: 'same-origin'
-    })
-        .then(response => response.json())
-        .then(data => json(data));
+    const base_url = process.env.BASE_URL || "http://localhost:8080";
+    try {
+        const response = await fetch(base_url + "/api/elev", {
+            method: 'GET',
+            credentials: 'same-origin'
+        });
+        if (!response.ok) {
+            console.error('Network response was not ok', response.status, response.statusText);
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        const data = await response.json();
+        return json(data);
+    } catch (error) {
+        console.error('Fetch error:', error);
+        throw new Response('Error fetching data: ' + error.message, { status: 500 });
+    }
 };
 
 const columns = [
