@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader: LoaderFunction = async ({request}) => {
-    const username = "Henrik Knutsen";
+    const username = request.headers.get("x-fullname") || "brukernavn";
     return json({username});
 };
 
