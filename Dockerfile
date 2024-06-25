@@ -7,5 +7,6 @@ COPY . .
 RUN npm run build
 
 ENV PORT=8000
+ENV BASE_URL = "https://fagprove.fintlabs.no"
 EXPOSE 8000
 CMD ["npm", "start"]

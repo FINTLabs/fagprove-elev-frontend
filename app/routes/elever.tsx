@@ -2,10 +2,11 @@ import {Table} from "@navikt/ds-react";
 import {json} from "@remix-run/react";
 import {useLoaderData} from "react-router";
 import AddElevButton from "~/components/elever/AddElevButton";
+import * as process from "process";
 
 export const loader = async () => {
-    const url = `/api/elev`;
-    return fetch(url, {
+    const base_url = process.env.BASE_URL || "http://localhost:8080"
+    return fetch(base_url + "/api/elev", {
         method: 'GET',
         credentials: 'same-origin'
     })
