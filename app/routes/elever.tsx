@@ -1,50 +1,40 @@
-import {Button, Table} from "@navikt/ds-react";
-import {PersonPlusIcon} from "@navikt/aksel-icons";
+import {Table} from "@navikt/ds-react";
+import {json} from "@remix-run/react";
+import {useLoaderData} from "react-router";
+import * as process from "process";
+import AddElevButton from "~/components/elever/AddElevButton";
 
-const data = [
-    {
-        name: "Jakobsen, Markus",
-        birthNumber: 9543049930,
-        email: "test@gmail.com",
-        mobileNumber: 45399999,
-        averageGrades: 4.23
-    },
-    {
-        name: "Jakobsen, Markus",
-        birthNumber: 9543049930,
-        email: "test@gmail.com",
-        mobileNumber: 45399999,
-        averageGrades: 4.23
-    },
-    {
-        name: "Jakobsen, Markus",
-        birthNumber: 9543049930,
-        email: "test@gmail.com",
-        mobileNumber: 45399999,
-        averageGrades: 4.23
-    },
-    {
-        name: "Jakobsen, Markus",
-        birthNumber: 9543049930,
-        email: "test@gmail.com",
-        mobileNumber: 45399999,
-        averageGrades: 4.23
-    },
-];
+export const loader = async () => {
+    const token = process.env.BEARER_TOKEN
+    if (!token) {
+        throw new Error("Bearer token is not defined in the environment variables");
+    }
+    const response = await fetch("http://localhost:8080/elev", {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    if (!response.ok) {
+        throw new Response("Failed to fetch data", {status: response.status});
+    }
+    const data = await response.json();
+    return json(data);
+};
 
 const columns = [
-    { name: "Navn", width: "20px" },
-    { name: "Fødselsnummer", width: "1000px" },
-    { name: "Email", width: "40px" },
-    { name: "Telefonnummer", width: "200px" },
-    { name: "Karakter Gjenomsnitt", width: "20px" },
+    {name: "Navn", width: "100px"},
+    {name: "Fødselsnummer", width: "200px"},
+    {name: "Email", width: "100px"},
+    {name: "Telefonnummer", width: "100px"},
+    {name: "Karakter Gjenomsnitt", width: "40px"},
 ];
 
 export default function Elever() {
+    const data = useLoaderData<typeof loader>();
     return (
         <div className="p-5">
             <h2 className="font-bold text-3xl">Elever</h2>
-            <Button icon={<PersonPlusIcon/>}>Legg til elev</Button>
+            <AddElevButton/>
             <Table>
                 <Table.Header>
                     <Table.Row>
