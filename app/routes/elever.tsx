@@ -11,12 +11,21 @@ export const loader = async () => {
             method: 'GET',
             credentials: 'same-origin'
         });
+
         if (!response.ok) {
             console.error('Network response was not ok', response.status, response.statusText);
             throw new Error('Network response was not ok: ' + response.statusText);
         }
-        const data = await response.json();
-        return json(data);
+
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            const data = await response.json();
+            return json(data);
+        } else {
+            const text = await response.text();
+            console.error('Response was not JSON:', text);
+            throw new Error('Response was not JSON: ' + text);
+        }
     } catch (error) {
         console.error('Fetch error:', error);
         throw new Response('Error fetching data: ' + error.message, { status: 500 });
