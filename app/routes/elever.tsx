@@ -4,36 +4,18 @@ import {useLoaderData} from "react-router";
 import AddElevButton from "~/components/elever/AddElevButton";
 import * as process from "process";
 
-export const loader = async ({ request }) => {
+export const loader = async ({request}) => {
     const base_url = process.env.BASE_URL || "http://localhost:8080";
     const cookies = request.headers.get("cookie");
-    try {
-        const response = await fetch(base_url + "/api/elev", {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {
-                'cookie': cookies
-            }
-        });
-
-        if (!response.ok) {
-            console.error('Network response was not ok', response.status, response.statusText);
-            throw new Error('Network response was not ok: ' + response.statusText);
+    const response = await fetch(base_url + "/api/elev", {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+            'cookie': cookies
         }
-
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.indexOf("application/json") !== -1) {
-            const data = await response.json();
-            return json(data);
-        } else {
-            const text = await response.text();
-            console.error('Response was not JSON:', text);
-            throw new Error('Response was not JSON: ' + text);
-        }
-    } catch (error) {
-        console.error('Fetch error:', error);
-        throw new Response('Error fetching data: ' + error.message, { status: 500 });
-    }
+    });
+    const data = await response.json();
+    return json(data);
 };
 
 const columns = [
