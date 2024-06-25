@@ -8,8 +8,7 @@ export const loader = async () => {
     const base_url = process.env.BASE_URL || "http://localhost:8080";
     try {
         const response = await fetch(base_url + "/api/elev", {
-            method: 'GET',
-            credentials: 'same-origin'
+            method: 'GET'
         });
 
         if (!response.ok) {
