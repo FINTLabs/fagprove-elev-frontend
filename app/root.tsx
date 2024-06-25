@@ -30,9 +30,9 @@ export function Layout({children}: { children: React.ReactNode }) {
             <Links/>
         </head>
         <body>
-        <div className="w-screen h-screen bg-gray-200 flex flex-col">
-            <header className="w-full bg-gray-400 flex h-20 justify-center">
-                <div className="w-3/4 mx-auto bg-gray-500 flex flex-row items-center p-4 justify-between">
+        <div className="w-screen h-screen flex flex-col">
+            <header className="w-full flex h-20 justify-center">
+                <div className="w-3/4 mx-auto flex flex-row items-center p-4 justify-between">
                     <div className="flex flex-row gap-6">
                         <div>
                             <img src={"novari.png"} alt="Novari Logo" className="h-12"/>
