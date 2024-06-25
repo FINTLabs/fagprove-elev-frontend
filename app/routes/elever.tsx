@@ -2,18 +2,18 @@ import {Table} from "@navikt/ds-react";
 import {json} from "@remix-run/react";
 import {useLoaderData} from "react-router";
 import AddElevButton from "~/components/elever/AddElevButton";
-import * as process from "process";
 
 export const loader = async () => {
-    const base_url = process.env.BASE_URL || "http://localhost:8080";
+    const base_url = "http://fagprove-elev-consumer.fintlabs-no.svc.cluster.local:8080";
     try {
         const response = await fetch(base_url + "/api/elev", {
-            method: 'GET'
+            method: 'GET',
+            credentials: 'same-origin'
         });
 
         if (!response.ok) {
             console.error('Network response was not ok', response.status, response.statusText);
-            return []
+            throw new Error('Network response was not ok: ' + response.statusText);
         }
 
         const contentType = response.headers.get("content-type");
@@ -23,11 +23,11 @@ export const loader = async () => {
         } else {
             const text = await response.text();
             console.error('Response was not JSON:', text);
-            return []
+            throw new Error('Response was not JSON: ' + text);
         }
     } catch (error) {
         console.error('Fetch error:', error);
-        return []
+        throw new Response('Error fetching data: ' + error.message, {status: 500});
     }
 };
 
@@ -41,6 +41,7 @@ const columns = [
 
 export default function Elever() {
     const data = useLoaderData<typeof loader>();
+
     return (
         <div className="p-5">
             <h2 className="font-bold text-3xl">Elever</h2>
