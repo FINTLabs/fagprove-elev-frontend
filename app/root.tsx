@@ -38,9 +38,6 @@ export function Layout({children}: { children: React.ReactNode }) {
                             <img src={"novari.png"} alt="Novari Logo" className="h-12"/>
                         </div>
                         <Link to="/">
-                            <Button>Hjem</Button>
-                        </Link>
-                        <Link to="/elever">
                             <Button>Elever</Button>
                         </Link>
                         <Link to="/log">
