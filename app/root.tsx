@@ -2,7 +2,7 @@ import {json, Link, Links, Meta, Outlet, Scripts, ScrollRestoration} from "@remi
 import "./tailwind.css";
 import '@navikt/ds-css'
 import {LoaderFunction, MetaFunction} from "@remix-run/node";
-import {Button} from "@navikt/ds-react";
+import {Box, Button} from "@navikt/ds-react";
 import {LeaveIcon} from "@navikt/aksel-icons";
 import {useLoaderData} from "react-router";
 
@@ -31,7 +31,7 @@ export function Layout({children}: { children: React.ReactNode }) {
         </head>
         <body>
         <div className="w-screen h-screen flex flex-col">
-            <header className="w-full flex h-20 justify-center">
+            <Box shadow="xsmall" className="w-full flex h-20 justify-center">
                 <div className="w-3/4 mx-auto flex flex-row items-center p-4 justify-between">
                     <div className="flex flex-row gap-6">
                         <div>
@@ -52,10 +52,10 @@ export function Layout({children}: { children: React.ReactNode }) {
                         <Button><LeaveIcon/></Button>
                     </div>
                 </div>
-            </header>
-            <main className="mx-auto m-10 w-3/4 h-1/2 bg-gray-400">
+            </Box>
+            <Box borderRadius="large" shadow="xsmall" className="mx-auto m-10 w-3/4 h-1/2">
                 {children}
-            </main>
+            </Box>
         </div>
         <ScrollRestoration/>
         <Scripts/>
