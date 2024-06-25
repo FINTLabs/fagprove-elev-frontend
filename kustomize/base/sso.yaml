@@ -1,0 +1,15 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: FLAISSso
+metadata:
+  name: fagprove-sso
+  labels:
+    app.kubernetes.io/name: fagprove-sso
+    app.kubernetes.io/instance: fagprove-sso_fintlabs_no
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: sso
+    app.kubernetes.io/part-of: fint-core
+    fintlabs.no/team: core
+    fintlabs.no/org-id: fintlabs.no
+spec:
+  hostname: fagprove.fintlabs.no
+  loggingLevel: debug
