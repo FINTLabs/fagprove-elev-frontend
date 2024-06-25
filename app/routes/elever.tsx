@@ -1,24 +1,16 @@
 import {Table} from "@navikt/ds-react";
 import {json} from "@remix-run/react";
 import {useLoaderData} from "react-router";
-import * as process from "process";
 import AddElevButton from "~/components/elever/AddElevButton";
 
 export const loader = async () => {
-    const token = process.env.BEARER_TOKEN
-    if (!token) {
-        throw new Error("Bearer token is not defined in the environment variables");
-    }
-    const response = await fetch("http://localhost:8080/elev", {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
-    if (!response.ok) {
-        throw new Response("Failed to fetch data", {status: response.status});
-    }
-    const data = await response.json();
-    return json(data);
+    const url = `/api/elev`;
+    return fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin'
+    })
+        .then(response => response.json())
+        .then(data => json(data));
 };
 
 const columns = [
