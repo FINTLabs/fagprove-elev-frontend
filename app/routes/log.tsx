@@ -38,7 +38,7 @@ export const loader = async ({ request }) => {
 export default function Log() {
     const data = useLoaderData<typeof loader>();
     const [page, setPage] = useState(1);
-    const rowsPerPage = 20;
+    const rowsPerPage = 15;
 
     let sortData = data;
     sortData = sortData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
